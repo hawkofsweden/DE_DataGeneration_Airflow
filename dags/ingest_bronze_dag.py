@@ -24,7 +24,7 @@ def ingest_data_to_bronze(table_name, file_prefix, **kwargs):
     Ingests the latest CSV file for a given prefix into the bronze table.
     Adds 'file_name' column to the data before ingestion.
     """
-    base_dir = "/opt/airflow/outputs"
+    base_dir = "/opt/airflow/data_output"
     search_pattern = os.path.join(base_dir, f"{file_prefix}*.csv")
     
     # Create archive directory if it doesn't exist

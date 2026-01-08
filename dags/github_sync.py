@@ -43,9 +43,22 @@ with DAG(
         fi
         
         # Deploy DAGs to Airflow DAGs directory
-        echo "Deploying DAGs from $TARGET_DIR/dags to /opt/airflow/dags..."
-        cp -R "$TARGET_DIR/dags/"* "/opt/airflow/dags/"
-        echo "DAGs deployed successfully."
+        SOURCE_DAGS="$TARGET_DIR/dags"
+        DEST_DAGS="/opt/airflow/dags"
+        
+        echo "Checking source directory: $SOURCE_DAGS"
+        ls -la "$SOURCE_DAGS"
+        
+        if [ -d "$SOURCE_DAGS" ]; then
+            echo "Deploying DAGs from $SOURCE_DAGS to $DEST_DAGS..."
+            # Use cp -r with . to catch all files including hidden ones, and -v for verbose
+            cp -Rv "$SOURCE_DAGS"/* "$DEST_DAGS/" || echo "Copy warning: Check if destination is writable or files match."
+            echo "Listing destination $DEST_DAGS after copy:"
+            ls -la "$DEST_DAGS"
+            echo "DAGs deployed successfully."
+        else
+            echo "WARNING: $SOURCE_DAGS does not exist. Skipping deployment."
+        fi
     """
 
     pull_repo = BashOperator(
