@@ -1,0 +1,9 @@
+*.csv
+*.txt
+!requirements.txt
+.venv/
+__pycache__/
+*.ipynb_checkpoints
+*.log
+.env
+*.ipynb
