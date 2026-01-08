@@ -56,7 +56,7 @@ def generate_customer_data(num_rows=300):
 
 
 if __name__ == "__main__":
-    OUTPUT_DIR = "/opt/airflow/outputs"
+    OUTPUT_DIR = "/opt/airflow/data_output"
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
     customers = generate_customer_data()

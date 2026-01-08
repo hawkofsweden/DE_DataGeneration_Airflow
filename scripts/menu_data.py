@@ -59,7 +59,7 @@ def menu_data(coffee_products):
     return pd.DataFrame(menu_items)
 
 if __name__ == "__main__":
-    OUTPUT_DIR = "/opt/airflow/outputs"
+    OUTPUT_DIR = "/opt/airflow/data_output"
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     menu = menu_data(coffee_products)

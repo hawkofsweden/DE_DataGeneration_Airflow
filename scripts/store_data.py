@@ -57,7 +57,7 @@ def generate_store_data(num_stores=50):
     return store_df
 
 if __name__ == "__main__":
-    OUTPUT_DIR = "/opt/airflow/outputs"
+    OUTPUT_DIR = "/opt/airflow/data_output"
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     stores = generate_store_data()
