@@ -23,5 +23,5 @@ with DAG(
 
     generate_task = BashOperator(
         task_id='generate_customer_data_task',
-        bash_command='python /opt/airflow/scripts/customer_data.py',
+        bash_command='python /opt/airflow/projects/scripts/customer_data.py',
     )

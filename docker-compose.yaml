@@ -80,7 +80,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
     - ./projects:/opt/airflow/projects
     - ./data_output:/opt/airflow/data_output
-    - ./scripts:/opt/airflow/scripts
+    - ./scripts:/opt/airflow/projects/scripts
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
     redis:

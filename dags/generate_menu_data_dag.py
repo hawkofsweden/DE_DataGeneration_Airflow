@@ -23,5 +23,5 @@ with DAG(
 
     generate_task = BashOperator(
         task_id='generate_menu_data_task',
-        bash_command='python /opt/airflow/scripts/menu_data.py',
+        bash_command='python /opt/airflow/projects/scripts/menu_data.py',
     )
