@@ -1,8 +1,8 @@
 import pytest
 import pandas as pd
-from customer_data import generate_customer_data
-from store_data import generate_store_data, european_locations
-from menu_data import menu_data, coffee_products
+from scripts.customer_data import generate_customer_data
+from scripts.store_data import generate_store_data, european_locations
+from scripts.menu_data import menu_data, coffee_products
 
 def test_customer_data_generation():
     num_rows = 50
