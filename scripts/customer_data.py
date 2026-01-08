@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import os
 from faker import Faker
 from datetime import datetime, timedelta
 
@@ -55,7 +56,13 @@ def generate_customer_data(num_rows=300):
 
 
 if __name__ == "__main__":
+    OUTPUT_DIR = "/opt/airflow/data_output"
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
     customers = generate_customer_data()
-    customers.to_csv('customer_data'+str(datetime.now())+'.csv', index=False)
-    print("Customer Data Generated Successfully!")
+    file_name = f"customer_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    full_path = os.path.join(OUTPUT_DIR, file_name)
+    
+    customers.to_csv(full_path, index=False)
+    print(f"Customer Data Generated and Saved to {full_path}")
     print(customers.head(25))

@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import os
 from faker import Faker
 from datetime import datetime
 
@@ -58,7 +59,13 @@ def menu_data(coffee_products):
     return pd.DataFrame(menu_items)
 
 if __name__ == "__main__":
+    OUTPUT_DIR = "/opt/airflow/data_output"
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     menu = menu_data(coffee_products)
-    menu.to_csv('menu_data'+str(datetime.now())+'.csv', index=False)
-    print("Menu Data (Product Master) Generated Successfully!")
+    file_name = f"menu_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    full_path = os.path.join(OUTPUT_DIR, file_name)
+    
+    menu.to_csv(full_path, index=False)
+    print(f"Menu Data Generated and Saved to {full_path}")
     print(menu.head())

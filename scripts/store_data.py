@@ -1,5 +1,6 @@
 import pandas as pd
 import random
+import os
 from faker import Faker
 from datetime import datetime
 
@@ -56,7 +57,13 @@ def generate_store_data(num_stores=50):
     return store_df
 
 if __name__ == "__main__":
+    OUTPUT_DIR = "/opt/airflow/data_output"
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+
     stores = generate_store_data()
-    stores.to_csv('store_data'+str(datetime.now())+'.csv', index=False) 
-    print("Store Data Generated Successfully!")
+    file_name = f"store_data_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+    full_path = os.path.join(OUTPUT_DIR, file_name)
+    
+    stores.to_csv(full_path, index=False) 
+    print(f"Store Data Generated and Saved to {full_path}")
     print(stores.head())
