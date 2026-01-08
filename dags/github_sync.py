@@ -41,6 +41,11 @@ with DAG(
             git reset --hard origin/main
             git clean -fd  # Remove untracked files
         fi
+        
+        # Deploy DAGs to Airflow DAGs directory
+        echo "Deploying DAGs from $TARGET_DIR/dags to /opt/airflow/dags..."
+        cp -R "$TARGET_DIR/dags/"* "/opt/airflow/dags/"
+        echo "DAGs deployed successfully."
     """
 
     pull_repo = BashOperator(
